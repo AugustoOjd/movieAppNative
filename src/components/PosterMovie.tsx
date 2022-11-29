@@ -4,18 +4,22 @@ import { Movie } from '../interfaces/moviesInterface';
 
 
 interface Props {
-    movie: Movie
+    movie: Movie,
+    height?: number,
+    width?: number
 }
 
-const PosterMovie = ({movie}: Props) => {
+const PosterMovie = ({movie, height = 400, width = 260}: Props) => {
 
     const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
 
   return (
     <View
         style={{
-            width: 300,
-            height: 420,
+            width,
+            height,
+            marginTop: 10,
+            marginHorizontal: 8
         }}
     >
         {/* <Text>
