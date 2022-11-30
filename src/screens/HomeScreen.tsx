@@ -15,9 +15,9 @@ interface Props extends StackScreenProps<any, any>{
 
 const {width: windowWitdh} = Dimensions.get('window')
 
-const HomeScreen = ({ navigation}:Props) => {
+const HomeScreen = ({ navigation }:Props) => {
 
-    const {cartelera, isLoading} = useMovies()
+    const {nowPlaying, popular, topRated, upcoming, isLoading} = useMovies()
 
     if( isLoading ){
         return(
@@ -43,7 +43,7 @@ const HomeScreen = ({ navigation}:Props) => {
             {/* carousel posters */}
             <Carousel 
 
-                data={cartelera}
+                data={nowPlaying!}
                 renderItem={ ({item}:any )=> <PosterMovie movie={item}/>}
                 sliderWidth={ windowWitdh }
                 itemWidth={300}
@@ -81,9 +81,11 @@ const HomeScreen = ({ navigation}:Props) => {
 
         </View> */}
         
-        <HorizontalSlider title='Terror' movies={cartelera}/>
+        <HorizontalSlider title='Popular'   movies={popular!}/>
 
-        <HorizontalSlider title='Terror' movies={cartelera}/>
+        <HorizontalSlider title='Top Rated' movies={topRated!}/>
+
+        <HorizontalSlider title='Upcoming'  movies={upcoming!}/>
 
 
 
