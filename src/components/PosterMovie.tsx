@@ -26,7 +26,9 @@ const PosterMovie = ({movie, height = 400, width = 260}: Props) => {
             width,
             height,
             marginTop: 10,
-            marginHorizontal: 8
+            marginHorizontal: 2,
+            paddingBottom: 15,
+            paddingHorizontal: 5
         }}
     >
         <View
@@ -53,14 +55,14 @@ const style = StyleSheet.create({
     imageContainer: {
         flex: 1,
         shadowColor: "#000",
-    shadowOffset: {
-    	width: 0,
-    	height: 10,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    
-    elevation: 10,
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.37,
+        shadowRadius: 7.49,
+        
+        elevation: 12,
         }
 })
 
