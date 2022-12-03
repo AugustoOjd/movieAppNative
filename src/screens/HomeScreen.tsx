@@ -1,7 +1,6 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React from 'react'
-import { Button, Dimensions, FlatList, Image, ScrollView, Text, View } from 'react-native';
-import { styles } from '../theme/Theme';
+import { Dimensions, ScrollView, View, ActivityIndicator } from 'react-native';
 import useMovies from '../hooks/useMovies';
 import PosterMovie from '../components/PosterMovie';
 
@@ -22,9 +21,7 @@ const HomeScreen = ({ navigation }:Props) => {
     if( isLoading ){
         return(
             <View>
-                <Text>
-                    ...Loading
-                </Text>
+                <ActivityIndicator/>
             </View>
         )
     }

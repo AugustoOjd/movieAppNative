@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react'
-import { Image, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Movie } from '../interfaces/moviesInterface';
 
 
@@ -54,6 +54,8 @@ const style = StyleSheet.create({
     },
     imageContainer: {
         flex: 1,
+        backgroundColor: 'white',
+        borderRadius: 15,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -62,7 +64,8 @@ const style = StyleSheet.create({
         shadowOpacity: 0.37,
         shadowRadius: 7.49,
         
-        elevation: 12,
+        elevation: 6,
+        resizeMode: 'contain'
         }
 })
 

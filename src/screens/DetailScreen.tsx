@@ -1,10 +1,10 @@
 import React from 'react'
-import { Image, Text, View, StyleSheet, Dimensions } from 'react-native';
+import { Image, Text, View, StyleSheet, Dimensions, ActivityIndicator } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
-import { Movie } from '../interfaces/moviesInterface';
 import { RootStackParams } from '../navigation/Navigation';
 import { ScrollView } from 'react-native-gesture-handler';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { useMovieDetails } from '../hooks/useMovieDetails';
+import DetailsMovie from '../components/DetailsMovie';
 
 const screenHeight = Dimensions.get('screen').height
 
@@ -17,6 +17,7 @@ const DetailScreen = ({route}: Props) => {
   const movie = route.params
   const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
 
+  const { isLoading, cast, movieFull} = useMovieDetails( movie.id)
 
 
   return (
@@ -50,7 +51,20 @@ const DetailScreen = ({route}: Props) => {
       </View>
 
       <View>
-        <Icon name="star-outline"></Icon>
+
+        {
+            isLoading
+            ?
+            <ActivityIndicator
+            size={35}
+            style={{
+              marginTop: 20
+            }}
+            />
+            :
+            <DetailsMovie movieFull={ movieFull!} cast={ cast }/>
+        }
+          
       </View>
     </ScrollView>
   )
@@ -76,6 +90,7 @@ const styles = StyleSheet.create({
     shadowRadius: 7.49,
     
     elevation: 12,
+    resizeMode: 'contain'
   },
 
   titlesContainer: {
@@ -90,7 +105,8 @@ const styles = StyleSheet.create({
   
   title: {
     fontSize: 22,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'black'
   }
 
 })
