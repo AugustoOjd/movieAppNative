@@ -17,6 +17,9 @@ const Navigation = () => {
   return (
     <Stack.Navigator
         initialRouteName='HomeScreen'
+        screenOptions={{
+          headerShown: false
+        }}
     >
       <Stack.Screen name="HomeScreen" component={ HomeScreen } />
       <Stack.Screen name="DetailScreen" component={ DetailScreen } />

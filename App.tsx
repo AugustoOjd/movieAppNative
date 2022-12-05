@@ -4,10 +4,12 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { SafeAreaView, Text, View } from 'react-native'
 import Navigation from './src/navigation/Navigation';
+import FadeScreen from './src/screens/FadeScreen';
 
 const App = () => {
   return (
     <NavigationContainer>
+        {/* <FadeScreen/> */}
         <Navigation/>
     </NavigationContainer>
   )

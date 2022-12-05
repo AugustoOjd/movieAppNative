@@ -3,10 +3,12 @@ import React from 'react'
 import { Dimensions, ScrollView, View, ActivityIndicator } from 'react-native';
 import useMovies from '../hooks/useMovies';
 import PosterMovie from '../components/PosterMovie';
-
+import ImageColors from 'react-native-image-colors'
 
 import Carousel from 'react-native-snap-carousel';
 import HorizontalSlider from '../components/HorizontalSlider';
+import GradientBancground from '../components/GradientBancground';
+import { getImageColors } from '../helpers/getColores';
 
 interface Props extends StackScreenProps<any, any>{
     
@@ -18,6 +20,15 @@ const HomeScreen = ({ navigation }:Props) => {
 
     const {nowPlaying, popular, topRated, upcoming, isLoading} = useMovies()
 
+    const getPosterColors = async (index: number) =>{
+        const movie = nowPlaying![index]
+        const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+
+        const [ primary, secondary ] = await getImageColors(uri)
+
+        console.log(primary, secondary)
+    }
+
     if( isLoading ){
         return(
             <View>
@@ -28,6 +39,8 @@ const HomeScreen = ({ navigation }:Props) => {
 
 
   return (
+
+    <GradientBancground>
 
     <ScrollView>
     <View
@@ -46,37 +59,9 @@ const HomeScreen = ({ navigation }:Props) => {
                 itemWidth={300}
                 sliderHeight={300}
                 itemHeight={250}
+                onSnapToItem={ index => getPosterColors(index)}
             />
         </View>
-
-        {/* Peliculas populares */}
-        {/* <View
-            style={{
-                backgroundColor: 'red',
-                height: 300,
-                
-            }}
-        >   
-            <Text
-                style={{
-                    fontSize: 30,
-                    fontWeight: 'bold'
-                }}
-            >
-                Populares
-            </Text>
-            <FlatList 
-                data={cartelera}
-                renderItem={ ({item}:any)=> (
-                    <PosterMovie movie={item} width={150} height={200}/> 
-                    )
-                }
-                keyExtractor={ (item)=> item.id.toString() }
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-            />
-
-        </View> */}
         
         <HorizontalSlider title='Popular'   movies={popular!}/>
 
@@ -84,14 +69,10 @@ const HomeScreen = ({ navigation }:Props) => {
 
         <HorizontalSlider title='Upcoming'  movies={upcoming!}/>
 
-
-
-        {/* <Button
-            title='ir a Details'
-            onPress={ ()=> navigation.navigate( 'DetailScreen' )}
-        /> */}
     </View>
     </ScrollView>
+
+    </GradientBancground>
   )
 }
 
