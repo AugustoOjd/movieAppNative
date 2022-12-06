@@ -2,15 +2,26 @@ import 'react-native-gesture-handler';
 
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import { SafeAreaView, Text, View } from 'react-native'
 import Navigation from './src/navigation/Navigation';
-import FadeScreen from './src/screens/FadeScreen';
+import { GradienteProvider } from './src/context/GradienteContext';
+
+
+const AppState = ({children}:any)=>{
+
+  return(
+    <GradienteProvider>
+      {children}
+    </GradienteProvider>
+  )
+}
 
 const App = () => {
   return (
     <NavigationContainer>
+      <AppState>
         {/* <FadeScreen/> */}
         <Navigation/>
+      </AppState>
     </NavigationContainer>
   )
 }

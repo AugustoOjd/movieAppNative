@@ -6,7 +6,7 @@ export default function useFade() {
 
     const opacity = useRef( new Animated.Value(0) ).current
 
-    const fadeIn = () =>{
+    const fadeIn = (callback?: Function) =>{
 
         Animated.timing(
             opacity,
@@ -15,17 +15,17 @@ export default function useFade() {
                 duration: 1000,
                 useNativeDriver: true
             }
-        ).start()
+        ).start( () => callback ? callback() : null)
     }
 
 
-    const fadeOut = () =>{
+    const fadeOut = (duration: number = 300) =>{
 
         Animated.timing(
             opacity,
             {
                 toValue: 0,
-                duration: 1000,
+                duration,
                 useNativeDriver: true
             }
         ).start()
